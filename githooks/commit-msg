@@ -14,7 +14,7 @@ unset IFS
 NUMELEMENTS=${#PARTS[@]}
 
 PART0=${PARTS[0]}
-MERGINGPATTERN='^(Merge|noqa|test)'
+MERGINGPATTERN='^(Merge|noqa|test|multiline)'
 # noqa. merge or test can go withot a pipeline
 if [ $NUMELEMENTS -lt 2 ]; then
     if [ "x`echo $PART0 | grep -iE $MERGINGPATTERN`" != "x" ]; then
