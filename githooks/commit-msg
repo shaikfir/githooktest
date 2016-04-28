@@ -1,0 +1,50 @@
+#!/bin/bash
+
+FNAME=$1
+
+FORMATMSG="\033[92mCommit message formats:\033[0m\n\t#SE-1234|some commit message\n\t#SE-task|task description\n\t#WSE-bug|bug title\n\t#SE-1234|Resolved|resolve note\n\tmerge|some commit message\n\tnoqa|some commit message\n\ttest|some commit message\nSupported projects: WOH, WIXAPPS, TPA, SE, CLNT, WCD. Delimiter is pipline |"
+# get commit message from commit file (assumed it's the first line in file)
+COMMMSG=`cat $FNAME | head -1`
+
+# split commit message by : separator
+export IFS="|"
+PARTS=( $COMMMSG )
+unset IFS
+
+NUMELEMENTS=${#PARTS[@]}
+
+PART0=${PARTS[0]}
+MERGINGPATTERN='^(Merge|noqa|test)'
+if [ $NUMELEMENTS -lt 2 ]; then
+    if [ "x`echo $PART0 | grep -iE $MERGINGPATTERN`" != "x" ]; then
+        exit 0
+    fi
+
+    echo -e "\033[91mError\033[0m Could not find pipeline delimiter or one of 'merge', 'noqa' or 'test' message"
+	echo -e $FORMATMSG
+    exit 1
+fi
+
+#check first part
+GREPPATTERN0='^#(WOH|WIXAPPS|TPA|SE|CLNT|WCD)-([0123456789]+|Bug|Task)$'
+if [ "x`echo $PART0 | grep -E -i $GREPPATTERN0`" == "x" ]; then
+    echo -e '\033[91mError\033[0m Commit message failed to meet requirements.'
+    echo -e $FORMATMSG
+    exit 1
+fi
+
+# if only one colon, return here
+if [ $NUMELEMENTS -eq 2 ]; then
+    exit 0
+fi
+
+#check second part
+PART1=${PARTS[1]}
+GREPPATTERN1='^resolved$'
+if [ "x`echo $PART1 | grep -E -i $GREPPATTERN1`" == "x" ]; then
+    echo -e '\033[91mError\033[0m Status can only be "resolved"'
+	echo -e $FORMATMSG
+    exit 1
+fi
+
+exit 0

@@ -1,0 +1,2 @@
+#!/bin/bash
+rm commit-msg ../.git/hooks
