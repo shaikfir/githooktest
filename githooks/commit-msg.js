@@ -3,6 +3,22 @@
 
 var fs = require('fs');
 
+var validate = function(msg){
+  if(msg.match(/blah/i)){
+    return {
+      exit: 0,
+      log: 'all ok'
+    }
+  }
+  else {
+    return {
+      exit: 1,
+      log: 'bad commit message: |' + msg + '|'
+    }
+
+  }
+}
+
 var firstLineFromBuffer = function(buffer) {
   return buffer.toString().split('\n').shift();
 };
@@ -10,5 +26,7 @@ var firstLineFromBuffer = function(buffer) {
 var commitMsgFile = process.argv[2];
 
 var msg = fs.readFileSync(commitMsgFile).toString();
+var res = validate(msg);
 
-process.exit(1);
+console.log(res.log);
+process.exit(res.exit);
