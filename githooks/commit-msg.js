@@ -19,14 +19,18 @@ var validate = function(msg){
   }
 }
 
+
+exports.validate = validate;
+
 var firstLineFromBuffer = function(buffer) {
   return buffer.toString().split('\n').shift();
 };
 
 var commitMsgFile = process.argv[2];
-
-var msg = fs.readFileSync(commitMsgFile).toString();
-var res = validate(msg);
-
-console.log(res.log);
-process.exit(res.exit);
+// Avoid runing global code durng tests
+if (commitMsgFile && commitMsgFile !== '--reporter'){
+  var msg = fs.readFileSync(commitMsgFile).toString();
+  var res = validate(msg);
+  console.log(res.log);
+  process.exit(res.exit);
+}
