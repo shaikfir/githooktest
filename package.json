@@ -1,0 +1,24 @@
+{
+  "name": "githooktest",
+  "version": "1.0.0",
+  "description": "git hooks",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaikfir/githooktest.git"
+  },
+  "author": "ShaiK",
+  "license": "ISC",
+  "homepage": "https://github.com/shaikfir/githooktest#readme",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
