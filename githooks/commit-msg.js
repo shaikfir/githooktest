@@ -2,23 +2,39 @@
 ':' //; exec "$(command -v nodejs || command -v node)" "$0" "$@"
 
 var fs = require('fs');
+var singleWords = ['noqa', 'test', 'merge'];
+
+
+var VALID =  {
+  exitCode: 0,
+  log: 'all ok'
+};
 
 var validate = function(msg){
-  if(msg.match(/blah/i)){
-    return {
-      exit: 0,
-      log: 'all ok'
+  return validateSingleLine(msg);
+}
+
+function validateSingleLine(msg) {
+  var i;
+  for (i in singleWords){
+    var word = singleWords[i];
+    var re = new RegExp('^' + word + '$|^' + word + '\|', "i");
+    if (re.test(msg)) {
+      return VALID;
     }
+  }
+
+  if(msg.match(/blah/i)){
+    return VALID;
   }
   else {
     return {
-      exit: 1,
+      exitCode: 1,
       log: 'bad commit message: |' + msg + '|'
     }
 
   }
-}
-
+};
 
 exports.validate = validate;
 
