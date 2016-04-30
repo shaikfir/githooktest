@@ -11,7 +11,13 @@ var validMessages = [
   'noqa|some description',
 
   'WCD-1234|some text',
-  'SE-0|some other text'
+  'SE-0|some other text',
+
+  'WCD-1234|resolved|some text',
+  'WCD-1234|dev-done|some text',
+  'SE-0|Resolved|some other text',
+  'CLNT-1111|Resolved|some other text|and|many |pipeliens'
+
 ];
 
 var badMessages = [
@@ -24,7 +30,13 @@ var badMessages = [
 
   'VOID-1234|some text',
   'WCD 1234|some text',
-  'WCD-12e3|some other text'
+  'WCD-12e3|some other text',
+
+  'WCD-1234|reslved|some text',
+  'WCD-1234|dev--done|some text',
+  'SHE-000|Resolved|some other text',
+  'SE-0|Resov|ed|som|e other text'
+
 
 ];
 
