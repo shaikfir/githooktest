@@ -5,9 +5,13 @@ var validMessages = [
   'merge',
   'test',
   'noqa',
-  'merge|some descritiob',
-  'test|some descritiob',
-  'noqa|some descritiob',
+
+  'merge|some description',
+  'test|some description',
+  'noqa|some description',
+
+  'WCD-1234|some text',
+  'SE-0|some other text'
 ];
 
 var badMessages = [
@@ -17,6 +21,11 @@ var badMessages = [
   'testing 123',
   'what aboutnoqa',
   'this also should never work!',
+
+  'VOID-1234|some text',
+  'WCD 1234|some text',
+  'WCD-12e3|some other text'
+
 ];
 
 
@@ -28,7 +37,7 @@ describe("Git Commit Hook", function() {
         var result = validator.validate(commitMsg);
 
         if (result.exitCode != 0) {
-          console.log('+ ERROR: ' + commitMsg + ' expected to be valid');
+          console.log('+ ERROR: ' + commitMsg + ' expected to be valid. Error message:"' + result.log + '"');
         }
         expect(result.exitCode).to.equal(0);
       }
