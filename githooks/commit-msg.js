@@ -18,22 +18,21 @@ function validateSingleLine(msg) {
   var i;
   for (i in singleWords){
     var word = singleWords[i];
-    var re = new RegExp('^' + word + '$|^' + word + '\|', "i");
-    if (re.test(msg)) {
+    var regex = '^'+ word + '$|^' + word + '\\|';
+    var re = new RegExp(regex);
+    var m = re.exec(msg);
+    if(m !== null){
       return VALID;
     }
   }
 
-  if(msg.match(/blah/i)){
-    return VALID;
-  }
-  else {
-    return {
-      exitCode: 1,
-      log: 'bad commit message: |' + msg + '|'
-    }
 
+  return {
+    exitCode: 1,
+    log: 'bad commit message: |' + msg + '|'
   }
+
+
 };
 
 exports.validate = validate;
