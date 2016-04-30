@@ -5,7 +5,7 @@ var validMessages = [
   'merge',
   'test',
   'noqa',
-
+  'blah|blah',
   'merge|some description',
   'test|some description',
   'noqa|some description',
@@ -27,6 +27,7 @@ var badMessages = [
   'testing 123',
   'what aboutnoqa',
   'this also should never work!',
+  'blah|blah',
 
   'VOID-1234|some text',
   'WCD 1234|some text',

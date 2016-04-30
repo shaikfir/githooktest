@@ -21,7 +21,7 @@ function isValidJiraRef(projRef){
     return {
       exitCode: 1,
       errCode: 2,
-      log: 'bad commit message: "' + msg + '". Expecting dash ("-") delimiter in Jira reference'
+      log: 'bad commit message. Expecting dash ("-") delimiter in Jira reference: ' + projRef
     }
   }
 
@@ -104,5 +104,5 @@ if (commitMsgFile && commitMsgFile !== '--reporter'){
   var msg = fs.readFileSync(commitMsgFile).toString();
   var res = validate(msg);
   console.log(res.log);
-  process.exit(res.exit);
+  process.exit(res.exitCode);
 }
