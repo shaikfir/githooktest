@@ -116,6 +116,7 @@ var commitMsgFile = process.argv[2];
 if (commitMsgFile && commitMsgFile !== '--reporter'){
   var msg = fs.readFileSync(commitMsgFile).toString();
   var res = validate(msg);
-  console.log(res.log);
+  var errorDesc = res.log.replace(/[\n\r]+$/, ''); // remove last crlf
+  console.log(errorDesc);
   process.exit(res.exitCode);
 }
