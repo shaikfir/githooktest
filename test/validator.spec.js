@@ -15,11 +15,20 @@ var validMessages = [
   'WCD-1234|resolved|some text',
   'WCD-1234|dev-done|some text',
   'SE-0|Resolved|some other text',
-  'CLNT-1111|Resolved|some other text|and|many |pipeliens'
+  'CLNT-1111|Resolved|some other text|and|many |pipeliens',
+
+  'WCD-1234|resolved|some text\n',
+  'WCD-1234|dev-done|some text\n',
+  'SE-0|Resolved|some other text\n',
+  'CLNT-1111|Resolved|some other text|and|many |pipeliens\n\n'
+
 
 ];
 
 var badMessages = [
+  '',
+  '\n',
+  '\n\n\n\n\n\n',
   'this should never work!',
   'this should never work!',
   'merge without pipeline',
