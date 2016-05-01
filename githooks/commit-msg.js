@@ -39,7 +39,7 @@ function isValidJiraRef(projRef){
   if (jiraNum.match(/^\d+$/) === null){
     return {
       exitCode: 1,
-      errCode: 3,
+      errCode: 4,
       log: 'bad commit message: "' + msg + '". bad Jira ticket number: ' + jiraNum
     }
   }
@@ -67,7 +67,7 @@ function validateSingleLine(msg) {
   if (numParts === 1) {
     return {
       exitCode: 1,
-      errCode: 4,
+      errCode: 5,
       log: 'bad commit message: "' + msg + '". Expecting pipline delimiter'
     }
   }
@@ -84,7 +84,7 @@ function validateSingleLine(msg) {
   if (statuses.indexOf(status) === -1) {
     return {
       exitCode: 1,
-      errCode: 5,
+      errCode: 6,
       log: 'bad commit message: "' + msg + '". unknown status: ' + status
     }
   }

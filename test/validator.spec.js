@@ -41,9 +41,33 @@ var badMessages = [
 
 ];
 
+describe("message validator", function() {
+  validMessages.forEach(function (commitMsg) {
+    it('should accept valid messages as valid ' + commitMsg, function() {
+        var result = validator.validate(commitMsg);
+        if (result.exitCode != 0) {
+          console.log('+ ERROR: ' + commitMsg + ' expected to be valid. Error message:"' + result.log + '"');
+        }
+        console.log(commitMsg);
+        expect(result.exitCode).to.equal(0);
+    });
+  })
+});
 
-describe("Git Commit Hook", function() {
+xdescribe("Git Commit Hook", function() {
   describe("message validator", function() {
+
+    validMessages.forEach(function (commitMsg) {
+      it('should accept valid messages as valid', function() {
+          var result = validator.validate(commitMsg);
+
+          if (result.exitCode != 0) {
+            console.log('+ ERROR: ' + commitMsg + ' expected to be valid. Error message:"' + result.log + '"');
+          }
+          expect(result.exitCode).to.equal(0);
+      });
+    })
+
     it('should accept valid messages as valid', function() {
       for (var i in validMessages) {
         var commitMsg = validMessages[i];
