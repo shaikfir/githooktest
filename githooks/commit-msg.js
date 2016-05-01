@@ -50,16 +50,15 @@ function isValidJiraRef(projRef){
 
 function validateSingleLine(msg) {
   // test for single word message
-  var i;
-  for (i in singleWords){
-    var word = singleWords[i];
+  var isValid = singleWords.some(function(word){
     var regex = '^'+ word + '$|^' + word + '\\|';
     var re = new RegExp(regex);
-    var m = re.exec(msg);
-    if(m !== null){
-      return VALID;
-    }
-  };
+    return re.exec(msg);
+  });
+
+  if (isValid) {
+    return VALID;
+  }
 
   // test for split message (pipeline)
   var parts = msg.split('|');
