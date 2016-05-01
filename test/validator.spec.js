@@ -47,10 +47,7 @@ var badMessages = [
   'SE-0|Resov|ed|som|e other text',
 
   'WCD-1234|resolved|desc\nBAD ONE\nWCD-1234|dev-done|some text\nSE-0|Resolved|some other text\n',
-  'WCD-1234|resolved|some text\n  \ntest|some desc\nSE-0|Resolved|some other text\n',
-
-
-
+  'WCD-1234|resolved|some text\n  \ntest|some desc\nSE-0|Resolved|some other text\n'
 ];
 
 describe("message validator", function() {
