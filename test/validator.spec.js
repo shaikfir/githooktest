@@ -20,9 +20,9 @@ var validMessages = [
   'WCD-1234|resolved|some text\n',
   'WCD-1234|dev-done|some text\n',
   'SE-0|Resolved|some other text\n',
-  'CLNT-1111|Resolved|some other text|and|many |pipeliens\n\n'
-
-
+  'CLNT-1111|Resolved|some other text|and|many |pipeliens\n',
+  'WCD-1234|resolved|some text\nWCD-1234|dev-done|some text\nSE-0|Resolved|some other text\n',
+  'WCD-1234|resolved|some text\ntest|some desc\nSE-0|Resolved|some other text\n'
 ];
 
 var badMessages = [
@@ -44,7 +44,11 @@ var badMessages = [
   'WCD-1234|reslved|some text',
   'WCD-1234|dev--done|some text',
   'SHE-000|Resolved|some other text',
-  'SE-0|Resov|ed|som|e other text'
+  'SE-0|Resov|ed|som|e other text',
+
+  'WCD-1234|resolved|desc\nBAD ONE\nWCD-1234|dev-done|some text\nSE-0|Resolved|some other text\n',
+  'WCD-1234|resolved|some text\n  \ntest|some desc\nSE-0|Resolved|some other text\n',
+
 
 
 ];

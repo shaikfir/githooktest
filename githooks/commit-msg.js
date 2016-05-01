@@ -13,17 +13,16 @@ var VALID =  {
 
 var validate = function(msg){
   var globalResult = null
-  msg = msg.replace(/[\n\r]+/g, ''); // remove last crlf
+  msg = msg.replace(/[\n\r]+$/, ''); // remove last crlf
   var lines = msg.split('\n');
-  var lineResults = lines.map(function(line){
+  var hasErr = lines.map(function(line){
     return validateSingleLine(line);
-  })
-  lineResults.some(function(result){
+  }).some(function(result){
     globalResult = result;
     return (result.exitCode === 1);
   });
 
-  if (globalResult) {
+  if (hasErr) {
     return globalResult;
   }
 
