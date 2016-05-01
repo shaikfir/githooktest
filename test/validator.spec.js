@@ -5,7 +5,6 @@ var validMessages = [
   'merge',
   'test',
   'noqa',
-  'blah|blah',
   'merge|some description',
   'test|some description',
   'noqa|some description',
@@ -43,54 +42,18 @@ var badMessages = [
 
 describe("message validator", function() {
   validMessages.forEach(function (commitMsg) {
-    it('should accept valid messages as valid ' + commitMsg, function() {
+    it('should accept valid messages as valid: ' + commitMsg, function() {
         var result = validator.validate(commitMsg);
-        if (result.exitCode != 0) {
-          console.log('+ ERROR: ' + commitMsg + ' expected to be valid. Error message:"' + result.log + '"');
-        }
-        console.log(commitMsg);
         expect(result.exitCode).to.equal(0);
     });
   })
 });
 
-xdescribe("Git Commit Hook", function() {
-  describe("message validator", function() {
-
-    validMessages.forEach(function (commitMsg) {
-      it('should accept valid messages as valid', function() {
-          var result = validator.validate(commitMsg);
-
-          if (result.exitCode != 0) {
-            console.log('+ ERROR: ' + commitMsg + ' expected to be valid. Error message:"' + result.log + '"');
-          }
-          expect(result.exitCode).to.equal(0);
-      });
-    })
-
-    it('should accept valid messages as valid', function() {
-      for (var i in validMessages) {
-        var commitMsg = validMessages[i];
+describe("message validator", function() {
+    badMessages.forEach(function(commitMsg) {
+      it('should reject invalid messages: ' + commitMsg, function() {
         var result = validator.validate(commitMsg);
-
-        if (result.exitCode != 0) {
-          console.log('+ ERROR: ' + commitMsg + ' expected to be valid. Error message:"' + result.log + '"');
-        }
-        expect(result.exitCode).to.equal(0);
-      }
-    });
-  });
-
-  describe("message validator", function() {
-    it('should reject invalid messages', function() {
-      for (var i in badMessages) {
-        var commitMsg = badMessages[i];
-        var result = validator.validate(commitMsg);
-        if (result.exitCode != 1) {
-          console.log('+ ERROR: ' + commitMsg + ' expected to be invalid');
-        }
         expect(result.exitCode).to.equal(1);
-      }
-    });
+     });
   });
 });
